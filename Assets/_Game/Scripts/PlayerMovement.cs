@@ -10,11 +10,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private Animator _animator;
 
-
     private CharacterMovement _characterMovement;
     private CharacterController _characterController;
     private AnimationPicker _animationPicker;
     private float _deadZone = 0.1f;
+
+    public float MoveSpeed
+    {
+        get => _characterMovement.MoveSpeed;
+        set => _characterMovement.MoveSpeed = value;
+    }
 
     private void Awake()
     {

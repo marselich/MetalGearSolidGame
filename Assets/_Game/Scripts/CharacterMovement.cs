@@ -3,8 +3,9 @@ using UnityEngine;
 public class CharacterMovement
 {
     private CharacterController _characterController;
-    private float _moveSpeed;
     private float _rotationSpeed;
+
+    public float MoveSpeed { get; set; }
 
     private Quaternion Rotation
     {
@@ -15,7 +16,7 @@ public class CharacterMovement
     public CharacterMovement(CharacterController characterController, float speed, float rotationSpeed)
     {
         _characterController = characterController;
-        _moveSpeed = speed;
+        MoveSpeed = speed;
         _rotationSpeed = rotationSpeed;
     }
 
@@ -24,7 +25,7 @@ public class CharacterMovement
         if (direction == Vector3.zero)
             return;
 
-        _characterController.Move(direction * _moveSpeed * Time.deltaTime);
+        _characterController.Move(direction * MoveSpeed * Time.deltaTime);
         ProcessRotateTo(direction);
     }
 

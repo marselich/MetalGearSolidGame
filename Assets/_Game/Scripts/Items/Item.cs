@@ -1,6 +1,7 @@
+// SpeedUpItem, HealItem, PistolItem, PistolController на игрока, ItemCollector
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public abstract class Item : MonoBehaviour
 {
-
+    public abstract void ActivateAbilityTo(Player player);
 }
