@@ -28,6 +28,8 @@ public class GunController : MonoBehaviour
 
     public void ShootWith(PistolItem pistol)
     {
+        pistol.BarrelPoint.GetComponentInChildren<ParticleSystem>().Play();
+
         GameObject bullet = Instantiate(_bulletPrefab, pistol.BarrelPoint.position, pistol.BarrelPoint.rotation);
         _bullets.Enqueue(bullet);
     }
