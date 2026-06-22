@@ -5,19 +5,43 @@ public class ItemsSpawner : MonoBehaviour
 {
     [SerializeField] private List<Item> _items;
     [SerializeField] private List<ItemsSpawnPoint> _spawnPoints;
+    [SerializeField] private float _cooldown;
+
+    private float _time;
 
     private void Update()
     {
-        ItemsSpawnPoint randomPoint = _spawnPoints[Random.Range(0, _spawnPoints.Count)];
-        Item randomItem = _items[Random.Range(0, _items.Count)];
+        _time += Time.deltaTime;
 
-        Instantiate(randomItem, randomPoint.transform.position, randomPoint.transform.rotation);
+        if (_time >= _cooldown)
+        {
+            List<ItemsSpawnPoint> itemsSpawnPoints = GetEmptyPoints();
+
+            if (itemsSpawnPoints.Count == 0)
+            {
+                _time = 0;
+                return;
+            }
+
+            ItemsSpawnPoint randomPoint = itemsSpawnPoints[Random.Range(0, itemsSpawnPoints.Count)];
+            Item randomItem = _items[Random.Range(0, _items.Count)];
+
+            Item newItem = Instantiate(randomItem, randomPoint.transform.position, Quaternion.identity, randomPoint.transform);
+
+            randomPoint.Occupy(newItem);
+
+            _time = 0;
+        }
     }
 
-    private void GetRandomPoint()
+    private List<ItemsSpawnPoint> GetEmptyPoints()
     {
-        ItemsSpawnPoint randomPoint = _spawnPoints[Random.Range(0, _spawnPoints.Count)];
+        List<ItemsSpawnPoint> itemsSpawnPoints = new List<ItemsSpawnPoint>();
+
+        foreach (ItemsSpawnPoint point in _spawnPoints)
+            if (point.IsEmpty)
+                itemsSpawnPoints.Add(point);
+
+        return itemsSpawnPoints;
     }
-
-
 }

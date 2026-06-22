@@ -17,8 +17,7 @@ public class ItemsCollector : MonoBehaviour
         {
             if (_collectedItem != null)
             {
-                _collectedItem.ActivateAbilityTo(_player);
-                _collectedItem = null;
+                _collectedItem.ActivateAbility();
             }
             else
             {
@@ -35,6 +34,9 @@ public class ItemsCollector : MonoBehaviour
         Item otherItem = other.GetComponent<Item>();
 
         if (otherItem)
+        {
+            otherItem.InitializeTo(_player);
             _collectedItem = otherItem;
+        }
     }
 }

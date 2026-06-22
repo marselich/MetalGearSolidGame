@@ -4,8 +4,12 @@ public class HealItem : Item
 {
     [SerializeField] private float _healValue;
 
-    public override void ActivateAbilityTo(Player player)
+    public override void ActivateAbility()
     {
-        player.Health.Add(_healValue);
+        base.ActivateAbility();
+
+        _player.EffectsActivator.ActivateHeal();
+        _player.Health.Add(_healValue);
+        _player.Health.ShowInfo();
     }
 }

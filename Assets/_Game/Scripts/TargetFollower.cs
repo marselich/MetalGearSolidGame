@@ -4,13 +4,7 @@ public class TargetFollower : MonoBehaviour
 {
     [SerializeField] private Transform _target;
     [SerializeField] private float _speed = 1f;
-
-    private Vector3 _offset;
-
-    private void Awake()
-    {
-        _offset = transform.position;
-    }
+    [SerializeField] private Vector3 _offset;
 
     private void Update()
     {

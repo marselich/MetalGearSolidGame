@@ -5,32 +5,32 @@ public class SpeedUpItem : Item
     [SerializeField] private float _speedMultiply;
     [SerializeField] private float _durationTime;
 
-    private Player _player;
-    private float _defaultMoveSpeed;
-    private float _time;
-
-    private void Update()
+    public override void InitializeTo(Player player)
     {
-        if (_player == null)
+        base.InitializeTo(player);
+        _deactivateTime = _durationTime;
+    }
+
+    public override void ActivateAbility()
+    {
+        base.ActivateAbility();
+
+        if (_isActived)
             return;
 
-        _time += Time.deltaTime;
+        _player.AnimationPicker.Drink();
+        _player.EffectsActivator.ActivateSpeedUp();
 
-        if (_time >= _durationTime)
-            DeactivateAbility();
+        _player.PlayerMovement.MoveSpeed = _player.PlayerMovement.DefaultMoveSpeed * _speedMultiply;
+
+        _isActived = true;
     }
 
-    public override void ActivateAbilityTo(Player player)
+    protected override void DeactivateAbility()
     {
-        _player = player;
-        _defaultMoveSpeed = player.PlayerMovement.MoveSpeed;
-
-        player.PlayerMovement.MoveSpeed = _defaultMoveSpeed * _speedMultiply;
-    }
-
-    private void DeactivateAbility()
-    {
-        _player.PlayerMovement.MoveSpeed = _defaultMoveSpeed;
+        _player.PlayerMovement.MoveSpeed = _player.PlayerMovement.DefaultMoveSpeed;
         _player = null;
+
+        base.DeactivateAbility();
     }
 }
