@@ -21,9 +21,9 @@ public class PlayerMovement : MonoBehaviour
     }
     public float DefaultMoveSpeed => _moveSpeed;
 
-    public void Initialize(AnimationPicker animationPicker)
+    private void Awake()
     {
-        _animationPicker = animationPicker;
+        _animationPicker = GetComponent<AnimationPicker>();
         _characterController = GetComponent<CharacterController>();
         _characterMovement = new CharacterMovement(_characterController, _moveSpeed, _rotationSpeed);
     }

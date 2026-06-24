@@ -1,21 +1,16 @@
 using UnityEngine;
 
-public class Health
+public class Health : MonoBehaviour
 {
-    private float _health;
-
-    public Health(float health)
-    {
-        _health = health;
-    }
+    [SerializeField] private float _value;
 
     public void Add(float value)
     {
-        _health += value;
+        _value += value;
     }
 
     public void ShowInfo()
     {
-        Debug.Log($"Здоровье: {_health}");
+        Debug.Log($"Здоровье: {_value}");
     }
 }

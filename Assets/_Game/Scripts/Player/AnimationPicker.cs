@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AnimationPicker
+public class AnimationPicker : MonoBehaviour
 {
     private const string RunningKey = "IsRunning";
     private const string PistolIdleKey = "IsPistolIdle";
@@ -8,11 +8,6 @@ public class AnimationPicker
     private const string DrinkTriggerKey = "Drink";
 
     [SerializeField] Animator _animator;
-
-    public AnimationPicker(Animator animator)
-    {
-        _animator = animator;
-    }
 
     public void Idle()
     {

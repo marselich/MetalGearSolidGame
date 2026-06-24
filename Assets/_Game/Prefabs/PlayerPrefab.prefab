@@ -9,12 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 881136489805843869}
-  - component: {fileID: 7608267416504651423}
+  - component: {fileID: 323643280220904895}
+  - component: {fileID: 3401067107066760129}
+  - component: {fileID: 1518431330992778319}
   - component: {fileID: 2315391442264351729}
   - component: {fileID: 4997926352674644970}
   - component: {fileID: 7932977780748861692}
-  - component: {fileID: 3928256352100817448}
   - component: {fileID: 1551364603677743065}
+  - component: {fileID: 3928256352100817448}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -40,7 +42,7 @@ Transform:
   - {fileID: 3974096044479654159}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7608267416504651423
+--- !u!114 &323643280220904895
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,11 +51,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 293147991052124408}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0fe91755f75efc4082af282730a18a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 19a4e61bc48a55543abbb421674a48c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthValue: 100
-  _handPoint: {fileID: 8152662016784032248}
+  <HandPoint>k__BackingField: {fileID: 8152662016784032248}
+--- !u!114 &3401067107066760129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293147991052124408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baf5ba2a8c4c6e140a8f6727f91c7cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _value: 100
+--- !u!114 &1518431330992778319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293147991052124408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d82fe35968a6c8941aa2726d7f22e964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _animator: {fileID: 2889985831225753957}
 --- !u!114 &2315391442264351729
 MonoBehaviour:
@@ -97,6 +123,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healEffect: {fileID: 1768274326166027711}
   _speedUpEffect: {fileID: 7324373400867959523}
+--- !u!114 &1551364603677743065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293147991052124408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b1a0769405f664e97986895d61b4ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 3
+  _rotationSpeed: 500
 --- !u!143 &3928256352100817448
 CharacterController:
   m_ObjectHideFlags: 0
@@ -123,20 +163,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.95, z: 0}
---- !u!114 &1551364603677743065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 293147991052124408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44b1a0769405f664e97986895d61b4ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moveSpeed: 3
-  _rotationSpeed: 500
 --- !u!1 &368885070001142159
 GameObject:
   m_ObjectHideFlags: 0
@@ -2090,6 +2116,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 13193001824774190, guid: 108ca465382c11742bd2c91fe4fdb13f,
         type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13193001824774190, guid: 108ca465382c11742bd2c91fe4fdb13f,
+        type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 1
       objectReference: {fileID: 0}
@@ -2101,6 +2132,11 @@ PrefabInstance:
     - target: {fileID: 13193001824774190, guid: 108ca465382c11742bd2c91fe4fdb13f,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 62919353767018898, guid: 108ca465382c11742bd2c91fe4fdb13f,
+        type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 62919353767018898, guid: 108ca465382c11742bd2c91fe4fdb13f,
@@ -2123,6 +2159,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpeedUpEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 2413333106277601229, guid: 108ca465382c11742bd2c91fe4fdb13f,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909213759771138948, guid: 108ca465382c11742bd2c91fe4fdb13f,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2909213759771138948, guid: 108ca465382c11742bd2c91fe4fdb13f,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
@@ -2140,6 +2186,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3659481748552064836, guid: 108ca465382c11742bd2c91fe4fdb13f,
         type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3659481748552064836, guid: 108ca465382c11742bd2c91fe4fdb13f,
+        type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 1
       objectReference: {fileID: 0}
@@ -2151,6 +2202,11 @@ PrefabInstance:
     - target: {fileID: 3659481748552064836, guid: 108ca465382c11742bd2c91fe4fdb13f,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7502301420882320180, guid: 108ca465382c11742bd2c91fe4fdb13f,
+        type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7502301420882320180, guid: 108ca465382c11742bd2c91fe4fdb13f,

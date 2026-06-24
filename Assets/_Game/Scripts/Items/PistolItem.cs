@@ -5,28 +5,34 @@ public class PistolItem : Item
     [SerializeField] Transform _barrelPoint;
     [SerializeField] float _duration;
 
+    private GunController _gunController;
+    private AnimationPicker _animationPicker;
+
     public Transform BarrelPoint => _barrelPoint;
 
-    public override void InitializeTo(Player player)
+    public override void InitializeTo(GameObject character)
     {
-        base.InitializeTo(player);
+        base.InitializeTo(character);
+
+        _gunController = character.GetComponent<GunController>();
+        _animationPicker = character.GetComponent<AnimationPicker>();
 
         _deactivateTime = _duration;
 
-        player.AnimationPicker.SetPistolIdle(true);
+        _animationPicker.SetPistolIdle(true);
     }
 
     public override void ActivateAbility()
     {
         base.ActivateAbility();
 
-        _player.GunController.ShootWith(this);
+        _gunController.ShootWith(this);
     }
 
     protected override void DeactivateAbility()
     {
-        _player.AnimationPicker.SetPistolIdle(false);
-        _player.AnimationPicker.SetPistolRunning(false);
+        _animationPicker.SetPistolIdle(false);
+        _animationPicker.SetPistolRunning(false);
 
         base.DeactivateAbility();
     }

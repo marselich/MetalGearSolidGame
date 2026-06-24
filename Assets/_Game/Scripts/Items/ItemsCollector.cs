@@ -1,15 +1,9 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Player))]
+[RequireComponent(typeof(HandPointStorage))]
 public class ItemsCollector : MonoBehaviour
 {
-    private Player _player;
     private Item _collectedItem;
-
-    private void Awake()
-    {
-        _player = GetComponent<Player>();
-    }
 
     private void Update()
     {
@@ -35,7 +29,7 @@ public class ItemsCollector : MonoBehaviour
 
         if (otherItem)
         {
-            otherItem.InitializeTo(_player);
+            otherItem.InitializeTo(gameObject);
             _collectedItem = otherItem;
         }
     }

@@ -5,10 +5,18 @@ public class SpeedUpItem : Item
     [SerializeField] private float _speedMultiply;
     [SerializeField] private float _durationTime;
 
-    public override void InitializeTo(Player player)
+    private AnimationPicker _animationPicker;
+    private EffectsActivator _effectsActivator;
+    private PlayerMovement _playerMovement;
+
+    public override void InitializeTo(GameObject character)
     {
-        base.InitializeTo(player);
+        base.InitializeTo(character);
         _deactivateTime = _durationTime;
+
+        _animationPicker = character.GetComponent<AnimationPicker>();
+        _effectsActivator = character.GetComponent<EffectsActivator>();
+        _playerMovement = character.GetComponent<PlayerMovement>();
     }
 
     public override void ActivateAbility()
@@ -18,18 +26,17 @@ public class SpeedUpItem : Item
         if (_isActived)
             return;
 
-        _player.AnimationPicker.Drink();
-        _player.EffectsActivator.ActivateSpeedUp();
+        _animationPicker.Drink();
+        _effectsActivator.ActivateSpeedUp();
 
-        _player.PlayerMovement.MoveSpeed = _player.PlayerMovement.DefaultMoveSpeed * _speedMultiply;
+        _playerMovement.MoveSpeed = _playerMovement.DefaultMoveSpeed * _speedMultiply;
 
         _isActived = true;
     }
 
     protected override void DeactivateAbility()
     {
-        _player.PlayerMovement.MoveSpeed = _player.PlayerMovement.DefaultMoveSpeed;
-        _player = null;
+        _playerMovement.MoveSpeed = _playerMovement.DefaultMoveSpeed;
 
         base.DeactivateAbility();
     }

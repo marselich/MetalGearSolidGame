@@ -7,7 +7,6 @@ public abstract class Item : MonoBehaviour
 
     protected float _deactivateTime = 0;
     protected bool _isActived = false;
-    protected Player _player;
 
     private float _time;
     private bool _isInitialized = false;
@@ -17,7 +16,7 @@ public abstract class Item : MonoBehaviour
     private void Awake()
     {
         _parentRotater = GetComponentInChildren<ParentRotater>();
-        _itemParticle = GetComponentInChildren<ParticleSystem>();
+        _itemParticle = _parentRotater.GetComponentInChildren<ParticleSystem>();
     }
 
     private void Update()
@@ -34,12 +33,14 @@ public abstract class Item : MonoBehaviour
         }
     }
 
-    public virtual void InitializeTo(Player player)
+    public virtual void InitializeTo(GameObject character)
     {
         _parentRotater.IsRotated = false;
         _itemParticle.Stop();
-        _player = player;
-        transform.SetParent(player.HandPoint.transform);
+
+        HandPointStorage handPointStorage = character.GetComponent<HandPointStorage>();
+        transform.SetParent(handPointStorage.HandPoint.transform);
+
         transform.localPosition = _inHandPosition;
         transform.localRotation = Quaternion.Euler(_inHandRotation);
     }
