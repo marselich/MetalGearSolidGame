@@ -1,4 +1,4 @@
 public interface IReactionBehaviour
 {
-    void React();
+    void ProcessReaction(Enemy enemy);
 }

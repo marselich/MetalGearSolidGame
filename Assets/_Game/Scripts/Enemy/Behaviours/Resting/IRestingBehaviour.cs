@@ -1,4 +1,4 @@
 public interface IRestingBehaviour
 {
-    void Rest();
+    void ProcessResting(Enemy enemy);
 }

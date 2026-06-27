@@ -1,7 +1,10 @@
+using UnityEngine;
+
 public class DyingBehaviour : IReactionBehaviour
 {
-    public void React()
+    public void ProcessReaction(Enemy enemy)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("АААААА БОЮСЬ");
+        enemy.Die();
     }
 }

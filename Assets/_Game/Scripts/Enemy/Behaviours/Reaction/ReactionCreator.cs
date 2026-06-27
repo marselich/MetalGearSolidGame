@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public static class ReactionFactory
+public static class ReactionCreator
 {
     public static IReactionBehaviour Create(ReactionTypes reactionTypes)
     {

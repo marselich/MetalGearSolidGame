@@ -1,7 +1,13 @@
+using UnityEngine;
+
 public class AggressiveBehaviour : IReactionBehaviour
 {
-    public void React()
+    public void ProcessReaction(Enemy enemy)
     {
-        throw new System.NotImplementedException();
+        Vector3 direction = enemy.AgroTarget.transform.position - enemy.transform.position;
+
+        direction.y = 0;
+
+        enemy.CharacterMovement.Move(direction.normalized);
     }
 }

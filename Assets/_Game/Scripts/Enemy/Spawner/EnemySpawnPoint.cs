@@ -12,8 +12,8 @@ public class EnemySpawnPoint : MonoBehaviour
     {
         _enemySpawner = GetComponent<EnemySpawner>();
 
-        IRestingBehaviour restingBehaviour = RestingFactory.Create(_restingBehaviour);
-        IReactionBehaviour reactionBehaviour = ReactionFactory.Create(_reactionBehaviour);
+        IRestingBehaviour restingBehaviour = RestingCreator.Create(_restingBehaviour);
+        IReactionBehaviour reactionBehaviour = ReactionCreator.Create(_reactionBehaviour);
 
         _enemySpawner.Initialize(restingBehaviour, reactionBehaviour);
         _enemySpawner.SpawnAt(transform);

@@ -17,7 +17,5 @@ public class EnemySpawner : MonoBehaviour
     {
         Enemy enemy = Instantiate(_enemyPrefab, transform);
         enemy.Initialize(_restingBehaviour, _reactionBehaviour);
-
-        enemy.Rest();
     }
 }

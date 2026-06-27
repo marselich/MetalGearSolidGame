@@ -1,7 +1,13 @@
+using UnityEngine;
+
 public class RunAwayBehaviour : IReactionBehaviour
 {
-    public void React()
+    public void ProcessReaction(Enemy enemy)
     {
-        throw new System.NotImplementedException();
+        Vector3 direction = enemy.transform.position - enemy.AgroTarget.transform.position;
+
+        direction.y = 0;
+
+        enemy.CharacterMovement.Move(direction.normalized);
     }
 }

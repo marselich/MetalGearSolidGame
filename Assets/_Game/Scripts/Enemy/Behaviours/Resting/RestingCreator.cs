@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public static class RestingFactory
+public static class RestingCreator
 {
     public static IRestingBehaviour Create(RestingTypes restingTypes)
     {
