@@ -8,6 +8,8 @@ public class RunAwayBehaviour : IReactionBehaviour
 
         direction.y = 0;
 
+        enemy.AnimationPicker.SetScaryRunning(true);
+        enemy.CharacterMovement.MoveSpeed = enemy.RunningSpeed;
         enemy.CharacterMovement.Move(direction.normalized);
     }
 }

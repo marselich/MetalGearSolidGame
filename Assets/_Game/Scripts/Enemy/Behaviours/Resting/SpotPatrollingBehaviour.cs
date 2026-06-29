@@ -20,6 +20,7 @@ public class SpotPatrollingBehaviour : IRestingBehaviour
 
         direction.y = 0;
 
+        enemy.AnimationPicker.SetWalking(true);
         enemy.CharacterMovement.Move(direction.normalized);
     }
 

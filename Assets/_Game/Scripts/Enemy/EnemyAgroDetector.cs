@@ -10,6 +10,7 @@ public class EnemyAgroDetector : MonoBehaviour
         {
             _enemy.IsAgro = true;
             _enemy.AgroTarget = other.gameObject;
+            _enemy.AnimationPicker.Stay();
         }
     }
 
@@ -19,6 +20,8 @@ public class EnemyAgroDetector : MonoBehaviour
         {
             _enemy.IsAgro = false;
             _enemy.AgroTarget = null;
+            _enemy.AnimationPicker.Stay();
+            _enemy.CharacterMovement.MoveSpeed = _enemy.WalkingSpeed;
         }
     }
 

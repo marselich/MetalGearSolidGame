@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private GameObject _spotPatrolingPoints;
 
-    private const float MoveSpeed = 2;
+    private const float MoveSpeed = 1;
     private const float RotationSpeed = 800;
 
     private IRestingBehaviour _restingBehaviour;
@@ -19,6 +19,10 @@ public class Enemy : MonoBehaviour
         => new List<Transform>(_spotPatrolingPoints.GetComponentsInChildren<Transform>());
     public GameObject AgroTarget { get; set; }
     public bool IsAgro { get; set; }
+    public AnimationPicker AnimationPicker { get; set; }
+    public float WalkingSpeed => MoveSpeed;
+    public float RunningSpeed => WalkingSpeed * 2.5f;
+    public ParticleSystem DieEffect { get; private set; }
 
     private void Awake()
     {
@@ -26,6 +30,9 @@ public class Enemy : MonoBehaviour
         CharacterController characterController = GetComponent<CharacterController>();
 
         _characterMovement = new CharacterMovement(characterController, MoveSpeed, RotationSpeed);
+
+        AnimationPicker = GetComponent<AnimationPicker>();
+        DieEffect = GetComponentInChildren<ParticleSystem>();
     }
 
     private void Update()

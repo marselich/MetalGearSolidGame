@@ -8,6 +8,8 @@ public class AggressiveBehaviour : IReactionBehaviour
 
         direction.y = 0;
 
+        enemy.AnimationPicker.SetRunning(true);
+        enemy.CharacterMovement.MoveSpeed = enemy.RunningSpeed;
         enemy.CharacterMovement.Move(direction.normalized);
     }
 }

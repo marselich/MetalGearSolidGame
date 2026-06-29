@@ -17,6 +17,7 @@ public class ChaoticPatrollingBehaviour : IRestingBehaviour
             _time = 0;
         }
 
+        enemy.AnimationPicker.SetWalking(true);
         enemy.CharacterMovement.Move(_currentDirection.normalized);
     }
 
