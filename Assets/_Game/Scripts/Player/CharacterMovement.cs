@@ -6,6 +6,7 @@ public class CharacterMovement
     private float _rotationSpeed;
 
     public float MoveSpeed { get; set; }
+    public CharacterController CharacterController => _characterController;
 
     private Quaternion Rotation
     {

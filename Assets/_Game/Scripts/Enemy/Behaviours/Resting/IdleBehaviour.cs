@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class IdleBehaviour : IRestingBehaviour
+public class IdleBehaviour : IBehaviour
 {
-    public void ProcessResting(Enemy enemy)
+    public void Update()
     {
         Debug.Log("стою отдыхаю");
     }

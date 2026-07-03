@@ -1,13 +1,24 @@
 using UnityEngine;
 
-public class ChaoticPatrollingBehaviour : IRestingBehaviour
+public class ChaoticPatrollingBehaviour : IBehaviour
 {
     private const float Delay = 1f;
+
+    private CharacterMovement _characterMovement;
+    private AnimationPicker _animationPicker;
 
     private float _time;
     private Vector3 _currentDirection;
 
-    public void ProcessResting(Enemy enemy)
+    public ChaoticPatrollingBehaviour(CharacterMovement characterMovement, AnimationPicker animationPicker)
+    {
+        _characterMovement = characterMovement;
+        _animationPicker = animationPicker;
+        _time = 0;
+        _currentDirection = Vector3.forward;
+    }
+
+    public void Update()
     {
         _time += Time.deltaTime;
 
@@ -17,8 +28,8 @@ public class ChaoticPatrollingBehaviour : IRestingBehaviour
             _time = 0;
         }
 
-        enemy.AnimationPicker.SetWalking(true);
-        enemy.CharacterMovement.Move(_currentDirection.normalized);
+        _animationPicker.SetWalking(true);
+        _characterMovement.Move(_currentDirection.normalized);
     }
 
     private void GenerateRandomDirection()

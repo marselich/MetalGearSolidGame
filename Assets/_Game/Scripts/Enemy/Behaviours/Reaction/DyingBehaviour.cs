@@ -1,27 +1,52 @@
+using System;
 using UnityEngine;
 
-public class DyingBehaviour : IReactionBehaviour
+public class DyingBehaviour : IBehaviour
 {
     private const float Delay = 3f;
+
+    private CharacterMovement _characterMovement;
+    private AnimationPicker _animationPicker;
+    private Transform _agroTarget;
+    private Action _dieAction;
+    private ParticleSystem _dieEffect;
     private float _time;
 
-    public void ProcessReaction(Enemy enemy)
+    public DyingBehaviour(
+        CharacterMovement characterMovement,
+        AnimationPicker animationPicker,
+        Transform agroTarget,
+        Action dieAction,
+        ParticleSystem dieEffect
+        )
+    {
+        _characterMovement = characterMovement;
+        _animationPicker = animationPicker;
+        _agroTarget = agroTarget;
+        _dieAction = dieAction;
+        _dieEffect = dieEffect;
+        _time = 0;
+    }
+
+    private Transform CharacterTransform => _characterMovement.CharacterController.transform;
+
+    public void Update()
     {
         _time += Time.deltaTime;
 
-        enemy.AnimationPicker.Scared();
-        enemy.transform.LookAt(enemy.AgroTarget.transform);
+        _animationPicker.Scared();
+        CharacterTransform.LookAt(_agroTarget.transform);
 
         if (_time >= Delay)
         {
-            enemy.Die();
+            _dieAction.Invoke();
         }
 
         if (_time >= Delay - 0.5f)
         {
-            enemy.DieEffect.Play();
+            _dieEffect.Play();
 
-            enemy.transform.localScale = Vector3.MoveTowards(enemy.transform.localScale, Vector3.zero, Time.deltaTime);
+            CharacterTransform.localScale = Vector3.MoveTowards(CharacterTransform.localScale, Vector3.zero, Time.deltaTime);
         }
     }
 }

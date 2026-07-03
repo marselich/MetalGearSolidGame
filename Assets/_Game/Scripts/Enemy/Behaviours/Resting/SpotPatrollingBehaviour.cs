@@ -1,33 +1,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpotPatrollingBehaviour : IRestingBehaviour
+public class SpotPatrollingBehaviour : IBehaviour
 {
     private const float DeadZone = 0.5f;
 
+    private CharacterMovement _characterMovement;
+    private AnimationPicker _animationPicker;
     private Queue<Transform> _spotPatrolingPoints;
+
     private Transform _currentSpotPoint;
 
-    public void ProcessResting(Enemy enemy)
+    public SpotPatrollingBehaviour(
+        CharacterMovement characterMovement,
+        AnimationPicker animationPicker,
+        Queue<Transform> spotPatrolingPoints
+        )
     {
-        if (_spotPatrolingPoints == null)
-            InitializeSpotPoints(enemy.SpotPatrolingPoints);
+        _characterMovement = characterMovement;
+        _animationPicker = animationPicker;
+        _spotPatrolingPoints = spotPatrolingPoints;
 
-        Vector3 direction = _currentSpotPoint.position - enemy.transform.position;
+        GenerateNewSpotPoint();
+    }
+
+    private Transform CharacterTransform => _characterMovement.CharacterController.transform;
+
+    public void Update()
+    {
+        Vector3 direction = _currentSpotPoint.position - CharacterTransform.position;
 
         if (direction.magnitude <= DeadZone)
             GenerateNewSpotPoint();
 
         direction.y = 0;
 
-        enemy.AnimationPicker.SetWalking(true);
-        enemy.CharacterMovement.Move(direction.normalized);
-    }
-
-    private void InitializeSpotPoints(List<Transform> points)
-    {
-        _spotPatrolingPoints = new Queue<Transform>(points);
-        GenerateNewSpotPoint();
+        _animationPicker.SetWalking(true);
+        _characterMovement.Move(direction.normalized);
     }
 
     private void GenerateNewSpotPoint()

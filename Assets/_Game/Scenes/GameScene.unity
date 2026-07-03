@@ -482,6 +482,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &691966418 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 293147991052124408, guid: 199215c72c48a684aa41756c5157db6c,
+    type: 3}
+  m_PrefabInstance: {fileID: 8350181428268491958}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &715674892
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,6 +591,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 715674893}
     m_Modifications:
+    - target: {fileID: 1926141121279664651, guid: d3460b0fa0e1d5f4a84cd6a466ad68ca,
+        type: 3}
+      propertyPath: _agroTarget
+      value: 
+      objectReference: {fileID: 691966418}
     - target: {fileID: 4679548363644456932, guid: d3460b0fa0e1d5f4a84cd6a466ad68ca,
         type: 3}
       propertyPath: m_Icon
@@ -595,6 +606,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemySpawnPoint (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679548363644456932, guid: d3460b0fa0e1d5f4a84cd6a466ad68ca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6690953956209268730, guid: d3460b0fa0e1d5f4a84cd6a466ad68ca,
         type: 3}
@@ -614,7 +630,7 @@ PrefabInstance:
     - target: {fileID: 8011373076508301940, guid: d3460b0fa0e1d5f4a84cd6a466ad68ca,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.586
+      value: 2.579
       objectReference: {fileID: 0}
     - target: {fileID: 8011373076508301940, guid: d3460b0fa0e1d5f4a84cd6a466ad68ca,
         type: 3}
@@ -821,6 +837,53 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1169603813}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1210377177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1210377179}
+  - component: {fileID: 1210377178}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1210377178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210377177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fe1ded311cb40143888861c5abbba76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyPrefab: {fileID: 0}
+  _agroTarget: {fileID: 0}
+  _spotPatrolingPoints: {fileID: 0}
+--- !u!4 &1210377179
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210377177}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.18281771, y: 3.592789, z: 6.5831156}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1259537242
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -927,6 +990,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 715674893}
     m_Modifications:
+    - target: {fileID: 1926141121279664651, guid: d3460b0fa0e1d5f4a84cd6a466ad68ca,
+        type: 3}
+      propertyPath: _agroTarget
+      value: 
+      objectReference: {fileID: 691966418}
     - target: {fileID: 4679548363644456932, guid: d3460b0fa0e1d5f4a84cd6a466ad68ca,
         type: 3}
       propertyPath: m_Icon
@@ -937,6 +1005,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemySpawnPoint (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679548363644456932, guid: d3460b0fa0e1d5f4a84cd6a466ad68ca,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6690953956209268730, guid: d3460b0fa0e1d5f4a84cd6a466ad68ca,
         type: 3}
@@ -956,7 +1029,7 @@ PrefabInstance:
     - target: {fileID: 8011373076508301940, guid: d3460b0fa0e1d5f4a84cd6a466ad68ca,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.586
+      value: 2.579
       objectReference: {fileID: 0}
     - target: {fileID: 8011373076508301940, guid: d3460b0fa0e1d5f4a84cd6a466ad68ca,
         type: 3}
@@ -1603,6 +1676,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 715674893}
     m_Modifications:
+    - target: {fileID: 1926141121279664651, guid: d3460b0fa0e1d5f4a84cd6a466ad68ca,
+        type: 3}
+      propertyPath: _agroTarget
+      value: 
+      objectReference: {fileID: 691966418}
     - target: {fileID: 4679548363644456932, guid: d3460b0fa0e1d5f4a84cd6a466ad68ca,
         type: 3}
       propertyPath: m_Icon
@@ -1614,6 +1692,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySpawnPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 6690953956209268730, guid: d3460b0fa0e1d5f4a84cd6a466ad68ca,
+        type: 3}
+      propertyPath: _enemySpawner
+      value: 
+      objectReference: {fileID: 1210377178}
     - target: {fileID: 6690953956209268730, guid: d3460b0fa0e1d5f4a84cd6a466ad68ca,
         type: 3}
       propertyPath: _restingBehaviour
@@ -1632,7 +1715,7 @@ PrefabInstance:
     - target: {fileID: 8011373076508301940, guid: d3460b0fa0e1d5f4a84cd6a466ad68ca,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.586
+      value: 2.579
       objectReference: {fileID: 0}
     - target: {fileID: 8011373076508301940, guid: d3460b0fa0e1d5f4a84cd6a466ad68ca,
         type: 3}
@@ -2103,3 +2186,4 @@ SceneRoots:
   - {fileID: 1999293543}
   - {fileID: 490511097}
   - {fileID: 715674893}
+  - {fileID: 1210377179}

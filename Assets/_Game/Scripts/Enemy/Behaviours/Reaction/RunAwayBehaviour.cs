@@ -1,15 +1,35 @@
 using UnityEngine;
 
-public class RunAwayBehaviour : IReactionBehaviour
+public class RunAwayBehaviour : IBehaviour
 {
-    public void ProcessReaction(Enemy enemy)
+    private CharacterMovement _characterMovement;
+    private AnimationPicker _animationPicker;
+    private Transform _agroTarget;
+    private float _runningSpeed;
+
+    public RunAwayBehaviour(
+        CharacterMovement characterMovement,
+        AnimationPicker animationPicker,
+        Transform agroTarget,
+        float runningSpeed
+        )
     {
-        Vector3 direction = enemy.transform.position - enemy.AgroTarget.transform.position;
+        _characterMovement = characterMovement;
+        _animationPicker = animationPicker;
+        _agroTarget = agroTarget;
+        _runningSpeed = runningSpeed;
+    }
+
+    private Transform CharacterTransform => _characterMovement.CharacterController.transform;
+
+    public void Update()
+    {
+        Vector3 direction = CharacterTransform.position - _agroTarget.position;
 
         direction.y = 0;
 
-        enemy.AnimationPicker.SetScaryRunning(true);
-        enemy.CharacterMovement.MoveSpeed = enemy.RunningSpeed;
-        enemy.CharacterMovement.Move(direction.normalized);
+        _animationPicker.SetScaryRunning(true);
+        _characterMovement.MoveSpeed = _runningSpeed;
+        _characterMovement.Move(direction.normalized);
     }
 }

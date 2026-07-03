@@ -1,15 +1,35 @@
 using UnityEngine;
 
-public class AggressiveBehaviour : IReactionBehaviour
+public class AggressiveBehaviour : IBehaviour
 {
-    public void ProcessReaction(Enemy enemy)
+    private CharacterMovement _characterMovement;
+    private AnimationPicker _animationPicker;
+    private Transform _agroTarget;
+    private float _runningSpeed;
+
+    public AggressiveBehaviour(
+        CharacterMovement characterMovement,
+        AnimationPicker animationPicker,
+        Transform agroTarget,
+        float runningSpeed
+        )
     {
-        Vector3 direction = enemy.AgroTarget.transform.position - enemy.transform.position;
+        _characterMovement = characterMovement;
+        _animationPicker = animationPicker;
+        _agroTarget = agroTarget;
+        _runningSpeed = runningSpeed;
+    }
+
+    private Transform CharacterTransform => _characterMovement.CharacterController.transform;
+
+    public void Update()
+    {
+        Vector3 direction = _agroTarget.position - CharacterTransform.position;
 
         direction.y = 0;
 
-        enemy.AnimationPicker.SetRunning(true);
-        enemy.CharacterMovement.MoveSpeed = enemy.RunningSpeed;
-        enemy.CharacterMovement.Move(direction.normalized);
+        _animationPicker.SetRunning(true);
+        _characterMovement.MoveSpeed = _runningSpeed;
+        _characterMovement.Move(direction.normalized);
     }
 }

@@ -1,23 +1,17 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private GameObject _spotPatrolingPoints;
-
     private const float MoveSpeed = 1;
     private const float RotationSpeed = 800;
 
-    private IRestingBehaviour _restingBehaviour;
-    private IReactionBehaviour _reactionBehaviour;
+    private IBehaviour _restingBehaviour;
+    private IBehaviour _reactionBehaviour;
 
     private CharacterMovement _characterMovement;
 
     public CharacterMovement CharacterMovement => _characterMovement;
-    public List<Transform> SpotPatrolingPoints
-        => new List<Transform>(_spotPatrolingPoints.GetComponentsInChildren<Transform>());
-    public GameObject AgroTarget { get; set; }
     public bool IsAgro { get; set; }
     public AnimationPicker AnimationPicker { get; set; }
     public float WalkingSpeed => MoveSpeed;
@@ -43,7 +37,7 @@ public class Enemy : MonoBehaviour
             ProcessResting();
     }
 
-    public void Initialize(IRestingBehaviour restingBehaviour, IReactionBehaviour reactionBehaviour)
+    public void Initialize(IBehaviour restingBehaviour, IBehaviour reactionBehaviour)
     {
         _restingBehaviour = restingBehaviour;
         _reactionBehaviour = reactionBehaviour;
@@ -54,7 +48,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void ProcessResting() => _restingBehaviour.ProcessResting(this);
+    private void ProcessResting() => _restingBehaviour.Update();
 
-    private void ProcessReaction() => _reactionBehaviour.ProcessReaction(this);
+    private void ProcessReaction() => _reactionBehaviour.Update();
 }

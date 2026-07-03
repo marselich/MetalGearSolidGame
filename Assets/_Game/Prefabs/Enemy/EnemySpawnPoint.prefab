@@ -61,3 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 6021057968609540603, guid: cbd52471bcec4694188bab57f5c2fc94,
     type: 3}
+  _AgroTarget: {fileID: 881136489805843869, guid: 199215c72c48a684aa41756c5157db6c,
+    type: 3}
+  _spotPatrolingPoints: {fileID: 845849555801960387, guid: af0924a22bf77554fbeae82a1a06618e,
+    type: 3}
