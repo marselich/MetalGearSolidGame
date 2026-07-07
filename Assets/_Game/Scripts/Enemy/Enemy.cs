@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, ITargetProvider, IKillable
 {
     private const float MoveSpeed = 1;
     private const float RotationSpeed = 800;
@@ -12,15 +12,15 @@ public class Enemy : MonoBehaviour
     private CharacterMovement _characterMovement;
 
     public CharacterMovement CharacterMovement => _characterMovement;
-    public bool IsAgro { get; set; }
     public AnimationPicker AnimationPicker { get; set; }
     public float WalkingSpeed => MoveSpeed;
     public float RunningSpeed => WalkingSpeed * 2.5f;
     public ParticleSystem DieEffect { get; private set; }
 
+    public Transform Target { get; set; }
+
     private void Awake()
     {
-        IsAgro = false;
         CharacterController characterController = GetComponent<CharacterController>();
 
         _characterMovement = new CharacterMovement(characterController, MoveSpeed, RotationSpeed);
@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (IsAgro)
+        if (HasTarget())
             ProcessReaction();
         else
             ProcessResting();
@@ -43,10 +43,12 @@ public class Enemy : MonoBehaviour
         _reactionBehaviour = reactionBehaviour;
     }
 
-    public void Die()
+    public void Kill()
     {
         Destroy(gameObject);
     }
+
+    public bool HasTarget() => Target != null;
 
     private void ProcessResting() => _restingBehaviour.Update();
 

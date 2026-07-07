@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class DyingBehaviour : IBehaviour
@@ -7,23 +6,23 @@ public class DyingBehaviour : IBehaviour
 
     private CharacterMovement _characterMovement;
     private AnimationPicker _animationPicker;
-    private Transform _agroTarget;
-    private Action _dieAction;
+    private ITargetProvider _agroTarget;
+    private IKillable _killableObject;
     private ParticleSystem _dieEffect;
     private float _time;
 
     public DyingBehaviour(
         CharacterMovement characterMovement,
         AnimationPicker animationPicker,
-        Transform agroTarget,
-        Action dieAction,
+        ITargetProvider agroTarget,
+        IKillable killableObject,
         ParticleSystem dieEffect
         )
     {
         _characterMovement = characterMovement;
         _animationPicker = animationPicker;
         _agroTarget = agroTarget;
-        _dieAction = dieAction;
+        _killableObject = killableObject;
         _dieEffect = dieEffect;
         _time = 0;
     }
@@ -35,11 +34,11 @@ public class DyingBehaviour : IBehaviour
         _time += Time.deltaTime;
 
         _animationPicker.Scared();
-        CharacterTransform.LookAt(_agroTarget.transform);
+        CharacterTransform.LookAt(_agroTarget.Target.transform);
 
         if (_time >= Delay)
         {
-            _dieAction.Invoke();
+            _killableObject.Kill();
         }
 
         if (_time >= Delay - 0.5f)

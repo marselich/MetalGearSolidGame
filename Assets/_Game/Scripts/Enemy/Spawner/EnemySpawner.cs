@@ -4,7 +4,6 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private Enemy _enemyPrefab;
-    [SerializeField] private GameObject _agroTarget;
     [SerializeField] private GameObject _spotPatrolingPoints;
 
     private RestingTypes _restingBehaviour;
@@ -32,9 +31,9 @@ public class EnemySpawner : MonoBehaviour
             (
             enemy.CharacterMovement,
             enemy.AnimationPicker,
-            _agroTarget.transform,
+            enemy,
             enemy.RunningSpeed,
-            enemy.Die,
+            enemy,
             enemy.DieEffect,
             new Queue<Transform>(SpotPatrolingPoints)
             );

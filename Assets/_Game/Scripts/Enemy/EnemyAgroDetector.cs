@@ -8,7 +8,7 @@ public class EnemyAgroDetector : MonoBehaviour
     {
         if (CheckPlayerTarget(other))
         {
-            _enemy.IsAgro = true;
+            _enemy.Target = other.transform;
             _enemy.AnimationPicker.Stay();
         }
     }
@@ -17,7 +17,7 @@ public class EnemyAgroDetector : MonoBehaviour
     {
         if (CheckPlayerTarget(other))
         {
-            _enemy.IsAgro = false;
+            _enemy.Target = null;
             _enemy.AnimationPicker.Stay();
             _enemy.CharacterMovement.MoveSpeed = _enemy.WalkingSpeed;
         }

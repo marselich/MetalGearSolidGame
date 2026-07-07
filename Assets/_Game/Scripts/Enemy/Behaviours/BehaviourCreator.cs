@@ -1,23 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class BehaviourCreator
 {
     private CharacterMovement _characterMovement;
     private AnimationPicker _animationPicker;
-    private Transform _agroTarget;
+    private ITargetProvider _agroTarget;
     private float _runningSpeed;
-    private Action _dieAction;
+    private IKillable _killableObject;
     private ParticleSystem _dieEffect;
     private Queue<Transform> _spotPatrolingPoints;
 
     public BehaviourCreator(
         CharacterMovement characterMovement,
         AnimationPicker animationPicker,
-        Transform agroTarget,
+        ITargetProvider agroTarget,
         float runningSpeed,
-        Action dieAction,
+        IKillable killableObject,
         ParticleSystem dieEffect,
         Queue<Transform> spotPatrolingPoints
         )
@@ -26,7 +25,7 @@ public class BehaviourCreator
         _animationPicker = animationPicker;
         _agroTarget = agroTarget;
         _runningSpeed = runningSpeed;
-        _dieAction = dieAction;
+        _killableObject = killableObject;
         _dieEffect = dieEffect;
         _spotPatrolingPoints = spotPatrolingPoints;
     }
@@ -42,7 +41,7 @@ public class BehaviourCreator
                 return new AggressiveBehaviour(_characterMovement, _animationPicker, _agroTarget, _runningSpeed);
 
             case ReactionTypes.Dying:
-                return new DyingBehaviour(_characterMovement, _animationPicker, _agroTarget, _dieAction, _dieEffect);
+                return new DyingBehaviour(_characterMovement, _animationPicker, _agroTarget, _killableObject, _dieEffect);
 
             default:
                 Debug.LogError($"No realization for {reactionTypes.ToString()}");

@@ -4,13 +4,13 @@ public class RunAwayBehaviour : IBehaviour
 {
     private CharacterMovement _characterMovement;
     private AnimationPicker _animationPicker;
-    private Transform _agroTarget;
+    private ITargetProvider _agroTarget;
     private float _runningSpeed;
 
     public RunAwayBehaviour(
         CharacterMovement characterMovement,
         AnimationPicker animationPicker,
-        Transform agroTarget,
+        ITargetProvider agroTarget,
         float runningSpeed
         )
     {
@@ -24,7 +24,7 @@ public class RunAwayBehaviour : IBehaviour
 
     public void Update()
     {
-        Vector3 direction = CharacterTransform.position - _agroTarget.position;
+        Vector3 direction = CharacterTransform.position - _agroTarget.Target.position;
 
         direction.y = 0;
 

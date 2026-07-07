@@ -4,13 +4,13 @@ public class AggressiveBehaviour : IBehaviour
 {
     private CharacterMovement _characterMovement;
     private AnimationPicker _animationPicker;
-    private Transform _agroTarget;
+    private ITargetProvider _agroTarget;
     private float _runningSpeed;
 
     public AggressiveBehaviour(
         CharacterMovement characterMovement,
         AnimationPicker animationPicker,
-        Transform agroTarget,
+        ITargetProvider agroTarget,
         float runningSpeed
         )
     {
@@ -24,7 +24,7 @@ public class AggressiveBehaviour : IBehaviour
 
     public void Update()
     {
-        Vector3 direction = _agroTarget.position - CharacterTransform.position;
+        Vector3 direction = _agroTarget.Target.position - CharacterTransform.position;
 
         direction.y = 0;
 
